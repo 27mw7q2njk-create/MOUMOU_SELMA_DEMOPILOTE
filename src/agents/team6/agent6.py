@@ -33,4 +33,5 @@ class Agent6(KartAgent):
             "rescue":bool(random.getrandbits(1)),
             "fire": bool(random.getrandbits(1)),
         }
+        
         return action
