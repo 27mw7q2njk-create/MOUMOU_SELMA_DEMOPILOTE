@@ -11,7 +11,7 @@ class Agent7(KartAgent):
         self.agent_positions = []
         self.obs = None
         self.isEnd = False
-        self.name = "Team7" # replace with your chosen name
+        self.name = " Moumou Selma" # exo 2a: affichage nom prenom a lecran
 
     def reset(self):
         self.obs, _ = self.env.reset()
@@ -21,8 +21,8 @@ class Agent7(KartAgent):
         return self.isEnd
 
     def choose_action(self, obs):
-        acceleration = random.random()
-        steering = random.random()
+        acceleration = 0.5
+        steering = 0.0
         action = {
             "acceleration": acceleration,
             "steer": steering,
