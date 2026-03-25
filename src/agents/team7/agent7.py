@@ -2,6 +2,8 @@ import numpy as np
 import random
 
 from utils.track_utils import compute_curvature, compute_slope
+from .kart_rescue import StuckControl
+
 from agents.kart_agent import KartAgent
 from .steering_piste import SteeringPiste # import de la class (composition)
 from omegaconf import OmegaConf #import fichier config
@@ -16,6 +18,8 @@ class Agent7(KartAgent):
         self.isEnd = False
         self.name = " Moumou Selma" # exo 2a: affichage nom prenom a lecran
         self.steering = SteeringPiste(cfg) # initialisation de steering
+        self.rescue_kart = StuckControl(cfg)
+
     def reset(self):
         self.obs, _ = self.env.reset()
         self.agent_positions = []
@@ -24,7 +28,14 @@ class Agent7(KartAgent):
         return self.isEnd
 
     def choose_action(self, obs):
-        acceleration = 0.5 # on roule doucement 
+        velocity = np.array(obs["velocity"])
+        speed = np.linalg.norm(velocity)
+
+        # Priorité absolue : sortie de blocage (marche arrière si nécessaire)
+        action_secours = self.rescue_kart.gerer_recul(obs, speed, self.steering)
+        if action_secours is not None:
+            return action_secours
+        acceleration = 0.1 # on roule doucement 
 
         correction_piste = self.steering.correction_centrePiste(obs)
 

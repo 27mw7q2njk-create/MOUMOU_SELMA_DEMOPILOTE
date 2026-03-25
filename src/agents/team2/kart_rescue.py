@@ -61,9 +61,10 @@ class StuckControl:
     #  @see     SteeringPiste.correction_centrePiste()
     def gerer_recul(self, obs, vitesse, steering):
         phase = obs.get("phase", 0)
-
+        pas_cour=0
+        pas_max=200
         # on ne compte les blocages qu'en phase de course pour ignorer le compte à rebours
-        if vitesse < self.vitesse and phase > 2:  # si vitesse nulle après le départ
+        if pas_cour < pas_max and phase > 2:  # si vitesse nulle après le départ
             self.stuck_steps += 1
         else:
             self.stuck_steps = 0
