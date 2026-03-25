@@ -19,7 +19,7 @@ class Agent1(KartAgent):
         self.agent_positions = []
         self.obs = None
         self.isEnd = False
-        self.name = "Tasty Crousteam"
+        self.name = "Moumou Selma"
 
         path_conf = Path(__file__).resolve().parent
         path_conf = str(path_conf) + '/ConfigFileTeam1.yaml'   #Chemin du fichier de configuration
