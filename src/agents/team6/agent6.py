@@ -12,7 +12,7 @@ class Agent6(KartAgent):
         self.agent_positions = []
         self.obs = None
         self.isEnd = False
-        self.name = "Team6" # replace with your chosen name
+        self.name = "Moumou Selma" # replace with your chosen name
 
     def reset(self):
         self.obs, _ = self.env.reset()
@@ -22,13 +22,13 @@ class Agent6(KartAgent):
         return self.isEnd
 
     def choose_action(self, obs):
-        acceleration = random.random()
-        steering = random.random()
+        acceleration = 0.2 # on roule doucement pour pas cogner les murs
+        steering = 1 # on tourne a fond a droite (ou a gauche peu importe)
         action = {
             "acceleration": acceleration,
             "steer": steering,
             "brake": False, # bool(random.getrandbits(1)),
-            "drift": bool(random.getrandbits(1)),
+            "drift": True, # ca facilite le tour de 360°
             "nitro": bool(random.getrandbits(1)),
             "rescue":bool(random.getrandbits(1)),
             "fire": bool(random.getrandbits(1)),
